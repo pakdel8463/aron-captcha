@@ -1,6 +1,6 @@
 <?php
 
-namespace Aron\Captcha\Rules;
+namespace AronLabs\Captcha\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;

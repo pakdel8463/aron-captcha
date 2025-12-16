@@ -1,5 +1,5 @@
 <?php
-namespace Aron\Captcha;
+namespace AronLabs\Captcha;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\JsonResponse;

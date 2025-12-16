@@ -1,6 +1,6 @@
 <?php
 
-namespace Aron\Captcha;
+namespace AronLabs\Captcha;
 
 use Illuminate\Support\ServiceProvider;
 

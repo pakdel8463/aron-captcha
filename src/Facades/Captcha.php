@@ -1,6 +1,6 @@
 <?php
 
-namespace Aron\Captcha\Facades;
+namespace AronLabs\Captcha\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
