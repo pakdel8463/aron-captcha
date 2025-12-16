@@ -1,0 +1,32 @@
+{
+    "name": "aronlabs/captcha",
+    "description": "A customizable and secure Captcha package for Laravel.",
+    "type": "laravel-package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "M.Pakdel",
+            "email": "pakdel8463@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AronLabs\\Captcha\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AronLabs\\Captcha\\CaptchaServiceProvider"
+            ],
+            "aliases": {
+                "AronCaptcha": "AronLabs\\Captcha\\Facades\\Captcha"
+            }
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "ext-gd": "*"
+    }
+}
