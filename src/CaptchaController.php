@@ -11,7 +11,7 @@ class CaptchaController extends Controller
 
     public function __construct()
     {
-        $this->captcha = App::make('aron-captcha');
+        $this->captcha = App::make('aronlabs-captcha');
     }
 
     public function refresh(): JsonResponse

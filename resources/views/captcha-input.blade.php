@@ -2,7 +2,7 @@
      style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
 
 
-    <img src="{{ app('aron-captcha')->generateBase64Image() }}"
+    <img src="{{ app('aronlabs-captcha')->generateBase64Image() }}"
          alt="captcha Code"
          id="aron-captcha-image"
          style="cursor: pointer; border: 1px solid #ccc; border-radius: 4px; height: 40px;">
