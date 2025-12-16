@@ -40,7 +40,7 @@
 ## 📦 Installation
 
 ```bash
-composer require aron/captcha
+composer require aronlabs/captcha
 ```
 
 Laravel will automatically discover the service provider.
@@ -50,13 +50,13 @@ Laravel will automatically discover the service provider.
 ## ⚙️ Configuration
 
 ```bash
-php artisan vendor:publish --tag=captcha-config
+php artisan vendor:publish --tag=aronlabs-captcha-config
 ```
 
 This will publish the configuration file to:
 
 ```text
-config/captcha.php
+config/aron-captcha.php
 ```
 
 ---
@@ -67,7 +67,7 @@ config/captcha.php
 <form method="POST">
     @csrf
 
-    @include('captcha::captcha-input')
+    @include('aronlabs-captcha::captcha-input')
 
     <button type="submit">Submit</button>
 </form>
@@ -78,7 +78,7 @@ config/captcha.php
 ## ✅ Validation
 
 ```php
-use Aron\Captcha\Rules\CaptchaRule;
+use AronLabs\Captcha\Rules\CaptchaRule;
 
 $request->validate([
     'captcha' => ['required', new CaptchaRule],
@@ -91,12 +91,12 @@ $request->validate([
 
 ### Publish Views
 ```bash
-php artisan vendor:publish --tag=captcha-views
+php artisan vendor:publish --tag=aronlabs-captcha-views
 ```
 
 ### Publish Fonts
 ```bash
-php artisan vendor:publish --tag=captcha-fonts
+php artisan vendor:publish --tag=aronlabs-captcha-fonts
 ```
 
 ---
