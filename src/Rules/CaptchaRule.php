@@ -16,7 +16,6 @@ class CaptchaRule implements ValidationRule
 
         if (!$correctCode || strtolower((string)$value) !== strtolower((string)$correctCode)) {
             Session::forget($sessionKey);
-
             $errorMessage = Lang::get('aronlabs-captcha::validation.captcha');
 
             $fail($errorMessage);
