@@ -8,17 +8,14 @@ class CaptchaServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-
-        // MERGE CONFIG
         $this->mergeConfigFrom(
-            __DIR__.'/../config/captcha.php', 'aron-captcha'
+            __DIR__.'/../config/aronlabs-captcha.php', 'aronlabs-captcha'
         );
 
-        // BIND CAPTCHA CLASS
-       $this->app->singleton('aron-captcha', function ($app) {
+        $this->app->singleton('aronlabs-captcha', function ($app) {
             return new Captcha(
                 $app['session.store'],
-                $app['config']->get('aron-captcha')
+                $app['config']->get('aronlabs-captcha')
             );
         });
     }
@@ -27,32 +24,25 @@ class CaptchaServiceProvider extends ServiceProvider
     {
         $packageBasePath = realpath(__DIR__ . '/../');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'aron-captcha');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'aronlabs-captcha');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
-        $this->loadTranslationsFrom($packageBasePath . '/resources/lang', 'aron-captcha');
+        $this->loadTranslationsFrom($packageBasePath . '/resources/lang', 'aronlabs-captcha');
 
         if ($this->app->runningInConsole()) {
 
-
-
-
-
             $this->publishes([
-                $packageBasePath . '/config/captcha.php' => config_path('aron-captcha.php'),
+                $packageBasePath . '/config/aronlabs-captcha.php' => config_path('aronlabs-captcha.php'),
             ], 'captcha-config');
 
-
             $this->publishes([
-                $packageBasePath . '/resources/views' => resource_path('views/vendor/aron-captcha'),
+                $packageBasePath . '/resources/views' => resource_path('views/vendor/aronlabs-captcha'),
             ], 'captcha-views');
 
-
             $this->publishes([
-                $packageBasePath . '/resources/fonts/default.ttf' => public_path('vendor/aron-captcha/fonts/default.ttf'),
+                $packageBasePath . '/resources/fonts/default.ttf' => public_path('vendor/aronlabs-captcha/fonts/default.ttf'),
             ], 'captcha-fonts');
 
-            $this->loadTranslationsFrom($packageBasePath . '/resources/lang', 'aron-captcha');
         }
     }
 }
