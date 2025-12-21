@@ -1,4 +1,4 @@
-# 🛡️ Aron Captcha
+# Aron Captcha
 ### Secure & Customizable CAPTCHA for Laravel
 
 **Aron Captcha** is a lightweight, secure, and fully customizable CAPTCHA package for Laravel, supporting both **text-based** and **math-based** challenges with Ajax refresh and clean Blade integration.
@@ -10,7 +10,7 @@
 **Aron Captcha** is developed and maintained by **AronSoft**.
 
  Website: https://aron-soft.com  
- Author: AronSoft Team
+ Author: Mojtaba pakdel
 
 ---
 
