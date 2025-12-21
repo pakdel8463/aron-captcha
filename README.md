@@ -5,11 +5,11 @@
 
 ---
 
-## 👤 Author & Maintainer
+##  Author & Maintainer
 
 **Aron Captcha** is developed and maintained by **AronSoft**.
 
- Website: https://aron-soft.com  
+ Website: https://aron-soft.com/landing/aron-captcha  
  Author: Mojtaba pakdel
 
 ---
