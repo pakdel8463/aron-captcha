@@ -9,12 +9,12 @@
 
 **Aron Captcha** is developed and maintained by **AronSoft**.
 
-🌐 Website: https://aron-soft.com  
-✍️ Author: AronSoft Team
+ Website: https://aron-soft.com  
+ Author: AronSoft Team
 
 ---
 
-## 📚 Table of Contents (English)
+##  Table of Contents (English)
 
 1. Requirements
 2. Installation
@@ -29,7 +29,7 @@
 
 ---
 
-## 🔧 Requirements
+##  Requirements
 
 - PHP >= 8.1
 - Laravel >= 10
@@ -37,7 +37,7 @@
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ```bash
 composer require aronlabs/captcha
@@ -47,7 +47,7 @@ Laravel will automatically discover the service provider.
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 ```bash
 php artisan vendor:publish --tag=aronlabs-captcha-config
@@ -61,7 +61,7 @@ config/aron-captcha.php
 
 ---
 
-## 🧩 Usage in Blade
+##  Usage in Blade
 
 ```blade
 <form method="POST">
@@ -75,7 +75,7 @@ config/aron-captcha.php
 
 ---
 
-## ✅ Validation
+##  Validation
 
 ```php
 use AronLabs\Captcha\Rules\CaptchaRule;
@@ -87,7 +87,7 @@ $request->validate([
 
 ---
 
-## 🎨 Customization
+##  Customization
 
 ### Publish Views
 ```bash
@@ -101,34 +101,34 @@ php artisan vendor:publish --tag=aronlabs-captcha-fonts
 
 ---
 
-## 🔄 Ajax Refresh Mechanism
+##  Ajax Refresh Mechanism
 
 Make sure your main layout contains:
 
 ```blade
-@stack('scripts')
+@yield('scripts')
 ```
 
 The CAPTCHA view automatically injects required JavaScript.
 
 ---
 
-## 🤝 Contribution
+##  Contribution
 
 Contributions are welcome!  
 Feel free to submit issues or pull requests via GitHub.
 
 ---
 
-## 🔐 Security
+##  Security
 
 If you discover a security vulnerability, please report it responsibly:
 
-📧 Email: security@aron-soft.com  
-🌐 Website: https://aron-soft.com
+ Email: security@aron-soft.com  
+ Website: https://aron-soft.com
 
 ---
 
-## 📄 License
+##  License
 
 This package is open-sourced software licensed under the **MIT License**.
