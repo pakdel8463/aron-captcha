@@ -23,11 +23,14 @@ class CaptchaServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $packageBasePath = realpath(__DIR__ . '/../');
+// نام استاندارد پکیج شما
+        $namespace = 'aronlabs-captcha';
 
+        // بارگذاری ترجمه‌ها با این نام
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'aronlabs-captcha');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
-        $this->loadTranslationsFrom($packageBasePath . '/resources/lang', 'aronlabs-captcha');
+        $this->loadTranslationsFrom($packageBasePath . '/resources/lang', $namespace);
 
         if ($this->app->runningInConsole()) {
 

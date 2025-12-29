@@ -5,7 +5,6 @@ namespace AronLabs\Captcha\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Lang;
 
 class CaptchaRule implements ValidationRule
 {
@@ -15,12 +14,14 @@ class CaptchaRule implements ValidationRule
         $correctCode = Session::get($sessionKey);
 
         if (!$correctCode || strtolower((string)$value) !== strtolower((string)$correctCode)) {
-            Session::forget($sessionKey);
-            $errorMessage = Lang::get('aronlabs-captcha::validation.captcha');
 
-            $fail($errorMessage);
+            Session::forget($sessionKey);
+
+            $fail('aronlabs-captcha::validation.incorrect')->translate();
+
             return;
         }
+
 
         Session::forget($sessionKey);
     }

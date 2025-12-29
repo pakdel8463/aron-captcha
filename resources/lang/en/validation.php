@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'captcha' => 'The security code entered is incorrect.',
+    'incorrect' => 'The security code entered is incorrect.',
 ];
