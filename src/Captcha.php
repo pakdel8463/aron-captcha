@@ -119,6 +119,9 @@ class Captcha
     /**
      * Generates the image using GD library.
      */
+    /**
+     * Generates the image using GD library (TrueColor for better quality).
+     */
     protected function createImage(string $text): string
     {
         if (!extension_loaded('gd')) {
@@ -128,51 +131,63 @@ class Captcha
         $width = $this->config['width'];
         $height = $this->config['height'];
         $fontSize = $this->config['font_size'];
-
         $fontPath = $this->config['font'];
+
         if (!file_exists($fontPath)) {
             $fontPath = __DIR__ . '/../resources/fonts/default.ttf';
         }
 
-        $image = imagecreate($width, $height);
+        // 1. Use TrueColor for better quality
+        $image = imagecreatetruecolor($width, $height);
 
+        // 2. Set white background
         $bgColor = imagecolorallocate($image, 255, 255, 255);
+        imagefilledrectangle($image, 0, 0, $width, $height, $bgColor);
+
         $textColor = imagecolorallocate($image, 0, 0, 0);
 
         $this->addNoise($image, $width, $height);
 
         // -----------------------------------------------------------
-        //  Fixing Centering Logic (Ascent Method)
+        //  Final Fix for Centering (Bounding Box Average Method)
         // -----------------------------------------------------------
 
         $angle = random_int(-3, 3);
         $padding = 10;
 
-        // 1. Auto-scaling: Reduce font size if needed
+        // A. Resize font if text is too big
         do {
             $bbox = imagettfbbox($fontSize, $angle, $fontPath, $text);
 
-            $textWidth = abs($bbox[4] - $bbox[0]); // Right X - Left X
-            $textHeight = abs($bbox[7] - $bbox[1]); // Upper Y - Lower Y (Full Height)
+            // 0: lower-left X, 4: upper-right X
+            $textWidth = abs($bbox[4] - $bbox[0]);
+            // 1: lower-left Y, 5: upper-right Y
+            $textHeight = abs($bbox[5] - $bbox[1]);
 
             if ($textWidth > ($width - $padding * 2) || $textHeight > ($height - $padding)) {
                 $fontSize--;
             } else {
                 break;
             }
-        } while ($fontSize > 8);
+        } while ($fontSize > 10);
 
-        // 2. Calculate X (Horizontal Center)
+        // B. Calculate X (Horizontal Center)
+        // Formula: (ImageWidth - TextWidth) / 2
         $x = ($width - $textWidth) / 2;
 
-        // 3. Calculate Y (Vertical Center)
-        // We calculate the top margin needed to center the box
-        // Then we add the 'Ascent' (distance from top to baseline) to find the baseline Y.
+        // C. Calculate Y (Vertical Center)
+        // Formula: (ImageHeight / 2) - (TextCenterOffset)
+        // TextCenterOffset = (TopY + BottomY) / 2
+        // Note: bbox[7] is Top-Left Y, bbox[1] is Bottom-Left Y
+        $textCenterY = ($bbox[7] + $bbox[1]) / 2;
+        $y = ($height / 2) - $textCenterY;
 
-        $ascent = abs($bbox[7]); // The height of text above the baseline
-        $y = (($height - $textHeight) / 2) + $ascent;
+        // *** MANUAL CORRECTION ***
+        // اگر هنوز متن پایین است، عدد زیر را منفی کنید (مثلاً -5 یا -10)
+        // اگر متن بالا است، عدد را مثبت کنید
+        $yCorrection = 0;
+        $y += $yCorrection;
 
-        // Draw text
         imagettftext($image, $fontSize, $angle, (int)$x, (int)$y, $textColor, $fontPath, $text);
 
         // -----------------------------------------------------------
